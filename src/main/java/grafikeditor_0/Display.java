@@ -1,12 +1,11 @@
 package grafikeditor_0;
 
 import grafikeditor_0.figuren.Figur;
+import grafikeditor_0.figuren.Kreis;
+import grafikeditor_0.figuren.Linie;
 import grafikeditor_0.figuren.Rechteck;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +65,17 @@ public class Display extends JFrame {
         Rechteck r = (Rechteck)f;
         g.drawRect(r.getX(), r.getY(), r.getBreite(), r.getHoehe());
       }
+      if (f instanceof Linie) {
+        Linie l = (Linie)f;
+        g.setColor(l.getFarbe());
+        g.drawLine(l.getX(), l.getY(), l.getBreite(), l.getHoehe());
+      }
+      if (f instanceof Kreis) {
+        Kreis k = (Kreis)f;
+        g.drawOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), 2*k.getRadius(), 2*k.getRadius());
+      }
+
+
       /* TODO: Hier muss für jede weitere Figur-Klasse, welche dargestellt werden k�nnen muss,
        * ein analoger Abschnitt, wie für die Rechteck-Klasse folgen.
        */
