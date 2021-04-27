@@ -43,5 +43,11 @@ public class Rechteck extends Figur {
 		this.ausgefuellt = ausgefuellt;
 	}
 
+	public void move(int deltaX, int deltaY) {
+		this.breite = this.breite + deltaX;
+		this.hoehe = this.hoehe + deltaY;
+		this.moveOrigin(deltaX, deltaY);
+	}
+
 
 }

@@ -26,6 +26,19 @@ public abstract class Figur {
 		return y;
 	}
 
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public Color getFarbe() { return farbe; }
+
+	public void moveOrigin(int deltaX, int deltaY) {
+		this.setX(this.x+deltaX);
+		this.setY(this.y+deltaY);
+	}
 
 }

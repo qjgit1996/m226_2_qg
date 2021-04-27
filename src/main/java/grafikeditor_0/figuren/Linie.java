@@ -3,36 +3,40 @@ package grafikeditor_0.figuren;
 import java.awt.*;
 
 public class Linie extends Figur {
-    private int endeX;
-    private int endeY;
+    private int breite;
+    private int hoehe;
 
-    public Linie(int x, int y, int endeX, int endeY) {
+    public Linie(int x, int y, int breite, int hoehe) {
         super(x, y);
-        this.setBreite(endeX);
-        this.setHoehe(endeY);
+        this.setBreite(breite);
+        this.setHoehe(hoehe);
     }
 
-    public Linie(int x, int y, int endeX, int endeY, Color farbe) {
+    public Linie(int x, int y, int breite, int hoehe, Color farbe) {
         super(x, y, farbe);
-        this.setBreite(endeX);
-        this.setHoehe(endeY);
+        this.setBreite(breite);
+        this.setHoehe(hoehe);
     }
 
     public int getBreite() {
-        return endeX;
+        return breite;
     }
 
-    public void setBreite(int endeX) {
-        this.endeX = endeX;
+    public void setBreite(int breite) {
+        this.breite = breite;
     }
 
     public int getHoehe() {
-        return endeY;
+        return hoehe;
     }
 
-    public void setHoehe(int endeY) {
-        this.endeY = endeY;
+    public void setHoehe(int hoehe) {
+        this.hoehe = hoehe;
     }
 
-
+    public void move(int deltaX, int deltaY) {
+        this.breite = this.breite + deltaX;
+        this.hoehe = this.hoehe + deltaY;
+        this.moveOrigin(deltaX, deltaY);
+    }
 }

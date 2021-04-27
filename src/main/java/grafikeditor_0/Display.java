@@ -6,6 +6,9 @@ import grafikeditor_0.figuren.Linie;
 import grafikeditor_0.figuren.Rechteck;
 
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +71,7 @@ public class Display extends JFrame {
       if (f instanceof Linie) {
         Linie l = (Linie)f;
         g.setColor(l.getFarbe());
+        l.move(200,200);
         g.drawLine(l.getX(), l.getY(), l.getBreite(), l.getHoehe());
       }
       if (f instanceof Kreis) {
@@ -90,4 +94,41 @@ public class Display extends JFrame {
     figuren.add(figur);
     repaint();
   }
+
+  public void save(Figur figur) {
+    BufferedWriter writer = null;
+    try {
+      //create a temporary file
+      File logFile = new File("/Users/quintengroenveld/Documents/m226_2_qg");
+      writer = new BufferedWriter(new FileWriter(logFile));
+      if (figur instanceof Rechteck) {
+        Rechteck r = (Rechteck)figur;
+        writer.write("Origin: " + r.getX() + " " + r.getY());
+        writer.newLine();
+        writer.write("Height/Width: " + r.getHoehe() + " " + r.getBreite());
+      }
+      if (figur instanceof Linie) {
+        Linie l = (Linie)figur;
+        writer.write("Origin: " + l.getX() + " " + l.getY());
+        writer.newLine();
+        writer.write("Height/Width: " + l.getHoehe() + " " + l.getBreite());
+      }
+      if (figur instanceof Kreis) {
+        Kreis k = (Kreis)figur;
+        writer.write("Origin: " + k.getX() + " " + k.getY());
+        writer.newLine();
+        writer.write("Radius: " + k.getRadius());
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        // Close the writer regardless of what happens...
+        writer.close();
+      } catch (Exception e) {
+      }
+    }
+  }
+
+  public void load() {}
 }

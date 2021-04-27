@@ -33,5 +33,8 @@ public class Kreis extends Figur{
         this.ausgefuellt = ausgefuellt;
     }
 
+    public void move(int deltaX, int deltaY) {
+        this.moveOrigin(deltaX, deltaY);
+    }
 
 }
