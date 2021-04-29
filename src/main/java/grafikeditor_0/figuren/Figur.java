@@ -5,7 +5,7 @@ import java.awt.*;
 public abstract class Figur {
 	protected int x;
 	protected int y;
-	protected Color farbe;
+	protected Color farbe = null;
 
 	public Figur (int x, int y) {
 		this.x = x;
@@ -34,7 +34,14 @@ public abstract class Figur {
 		this.y = y;
 	}
 
-	public Color getFarbe() { return farbe; }
+	public Color getFarbe() {
+		if (this.farbe != null) {
+			return farbe;
+		}
+		else {
+			return null;
+		}
+	}
 
 	public void moveOrigin(int deltaX, int deltaY) {
 		this.setX(this.x+deltaX);

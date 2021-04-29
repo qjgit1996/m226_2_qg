@@ -5,7 +5,7 @@ import java.awt.*;
 public class Rechteck extends Figur {
 	private int breite;
 	private int hoehe;
-	private boolean ausgefuellt;
+	private boolean ausgefuellt = false;
 	
 	public Rechteck(int x, int y, int breite, int hoehe) {
 		super(x, y);
@@ -14,9 +14,10 @@ public class Rechteck extends Figur {
 	}
 
 	public Rechteck(int x, int y, int breite, int hoehe, Color farbe, boolean ausgefuellt) {
-		super(x, y);
+		super(x, y, farbe);
 		this.setBreite(breite);
 		this.setHoehe(hoehe);
+		this.ausgefuellt = ausgefuellt;
 	}
 
 	public int getBreite() {
@@ -36,7 +37,12 @@ public class Rechteck extends Figur {
 	}
 
 	public boolean getAusgefuellt() {
-		return ausgefuellt;
+		if (this.ausgefuellt == false) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	public void setAusgefuellt(boolean ausgefuellt) {
