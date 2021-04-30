@@ -37,7 +37,7 @@ public class Rechteck extends Figur {
 	}
 
 	public boolean getAusgefuellt() {
-		if (this.ausgefuellt == false) {
+		if (!this.ausgefuellt) {
 			return false;
 		}
 		else {
@@ -55,5 +55,14 @@ public class Rechteck extends Figur {
 		this.moveOrigin(deltaX, deltaY);
 	}
 
+	public void zeichnen(Graphics g) {
+		if (this.getFarbe() != null){
+			g.setColor(this.getFarbe());
+		}
+		else {
+			g.setColor(Color.BLACK);
+		}
+		g.drawRect(this.x, this.y, this.breite, this.hoehe);
+	}
 
 }

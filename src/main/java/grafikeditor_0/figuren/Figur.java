@@ -17,6 +17,8 @@ public abstract class Figur {
 		this.y = y;
 		this.farbe = farbe;
 	}
+
+	public abstract void zeichnen(Graphics g);
 	
 	public int getX() {
 		return x;

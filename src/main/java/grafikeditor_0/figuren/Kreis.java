@@ -37,4 +37,14 @@ public class Kreis extends Figur{
         this.moveOrigin(deltaX, deltaY);
     }
 
+    public void zeichnen(Graphics g) {
+        if (this.getFarbe()!=null){
+            g.setColor(this.getFarbe());
+        }
+        else {
+            g.setColor(Color.BLACK);
+        }
+        g.drawOval(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
+    }
+
 }
