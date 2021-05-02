@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Zeichnung extends Display{
+public class Zeichnung {
     /**
      * Die Liste der dargestellten Figur-Objekte
      */
@@ -20,12 +20,10 @@ public class Zeichnung extends Display{
 
     public void hinzufuegen(Figur fig) {
         figuren.add(fig);
-        repaint();
     }
 
     public void entfernen(Figur fig) {
         figuren.remove(fig);
-        repaint();
     }
 
     /**
@@ -37,20 +35,6 @@ public class Zeichnung extends Display{
         for (Figur f : figuren) {
             f.zeichnen(g);
         }
-    }
-
-    public void createAndAddDrawingPanel() {
-        // Das JPanel-Objekt ist ein Objekt einer anonymen Unterklasse von JPanel
-        // Siehe Java-Grundkurs Abschnitt 3.9
-        add(new JPanel() {
-            // Die paintComponent()-Methode wird automatisch aufgerufen, wenn irgendwer die repaint()-
-            // Methode beim Dsiplay aufruft.
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                zeichneFiguren(g);
-            }
-        });
     }
 
     public void save(Figur figur) {

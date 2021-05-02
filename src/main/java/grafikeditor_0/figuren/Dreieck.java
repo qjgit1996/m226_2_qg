@@ -8,8 +8,10 @@ public class Dreieck extends Figur {
     private Linie unterSeite;
     private boolean ausgefuellt;
 
-    public Dreieck(int xA, int yA, int xB, int yB, int xC, int yC) {
+    public Dreieck(int xA, int yA, int xB, int yB) {
         super(xA, yA);
+        int xC = xB + Math.abs(xA - xB) * 2;
+        int yC = yB;
         linkeSeite = new Linie(xA, yA, xB, yB);
         rechteSeite = new Linie(xA, yA, xC, yC);
         unterSeite = new Linie(xB, yB, xC, yC);

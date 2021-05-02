@@ -44,6 +44,5 @@ public class Display extends JFrame {
 
   public void setZeichnung(Zeichnung zeichnung) {
     this.zeichnung = zeichnung;
-    this.zeichnung.createAndAddDrawingPanel();
   }
 }
