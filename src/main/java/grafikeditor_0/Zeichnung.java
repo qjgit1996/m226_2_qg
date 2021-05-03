@@ -195,7 +195,7 @@ public class Zeichnung {
         }
         if (i == 5) {
             if (figurTyp.equals("Dreieck")) {
-                this.hinzufuegen(new Dreieck(x, y, breite, hoehe, x3, y3, aufgefuellt, farbe));
+                this.hinzufuegen(new Dreieck(x, y, breite, hoehe, farbe, aufgefuellt));
             }
             if (figurTyp.equals("Kreis")) {
                 this.hinzufuegen(new Kreis(x, y, radius, farbe, aufgefuellt));

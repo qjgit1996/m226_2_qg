@@ -2,8 +2,7 @@ package grafikeditor_0;
 
 import grafikeditor_0.figuren.*;
 
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 
 final class EditorControl {
@@ -11,6 +10,8 @@ final class EditorControl {
     private Zeichnung zeichnung = new Zeichnung(figs);
     private char figurTyp;
     private Point ersterPunkt;
+    private Color farbe;
+    private boolean ausgefuellt = true;
 
     public void allesNeuZeichnen(Graphics g) {
         zeichnung.zeichneFiguren(g);
@@ -24,17 +25,25 @@ final class EditorControl {
         this.ersterPunkt = ersterPunkt;
     }
 
+    public void setFarbe(Color col) {
+        this.farbe = col;
+    }
+
+    public void setAusgefuellt(boolean ausgefuellt) {
+        this.ausgefuellt = ausgefuellt;
+    }
+
     public void erzeugeFigurMitZweitemPunkt(Point zweiterPunkt) {
         if (figurTyp == 'k') {
             int rad = (int)Math.sqrt((double)Math.pow(Math.abs(ersterPunkt.x - zweiterPunkt.x),2) + (double)Math.pow(Math.abs(ersterPunkt.y - zweiterPunkt.y), 2));
-            zeichnung.hinzufuegen(new Kreis(ersterPunkt.x, ersterPunkt.y, rad));
+            zeichnung.hinzufuegen(new Kreis(ersterPunkt.x, ersterPunkt.y, rad, this.farbe, this.ausgefuellt));
         }
         if (figurTyp == 'r') {
-            Figur fig = new Rechteck(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y);
+            Figur fig = new Rechteck(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y, this.farbe, this.ausgefuellt);
             zeichnung.hinzufuegen(fig);
         }
         if (figurTyp == 'd') {
-            zeichnung.hinzufuegen(new Dreieck(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y));
+            zeichnung.hinzufuegen(new Dreieck(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y, this.farbe, this.ausgefuellt));
         }
         if (figurTyp == 'l') {
             zeichnung.hinzufuegen(new Linie(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y));

@@ -40,11 +40,23 @@ public class Kreis extends Figur{
     public void zeichnen(Graphics g) {
         if (this.getFarbe()!=null){
             g.setColor(this.getFarbe());
+            if (this.ausgefuellt) {
+                g.fillOval(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
+            }
+            else {
+                g.drawOval(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
+            }
         }
         else {
             g.setColor(Color.BLACK);
+            if (this.ausgefuellt) {
+                g.fillOval(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
+            }
+            else {
+                g.drawOval(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
+            }
         }
-        g.drawOval(this.x - this.radius, this.y - this.radius, 2 * this.radius, 2 * this.radius);
+
     }
 
 }

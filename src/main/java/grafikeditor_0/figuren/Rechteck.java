@@ -5,7 +5,7 @@ import java.awt.*;
 public class Rechteck extends Figur {
 	private int breite;
 	private int hoehe;
-	private boolean ausgefuellt = false;
+	private boolean ausgefuellt = true;
 	
 	public Rechteck(int x, int y, int breite, int hoehe) {
 		super(x, y);
@@ -58,11 +58,22 @@ public class Rechteck extends Figur {
 	public void zeichnen(Graphics g) {
 		if (this.getFarbe() != null){
 			g.setColor(this.getFarbe());
+			if (this.ausgefuellt) {
+				g.fillRect(this.x, this.y, this.breite, this.hoehe);
+			}
+			else {
+				g.drawRect(this.x, this.y, this.breite, this.hoehe);
+			}
 		}
 		else {
 			g.setColor(Color.BLACK);
+			if (this.ausgefuellt) {
+				g.fillRect(this.x, this.y, this.breite, this.hoehe);
+			}
+			else {
+				g.drawRect(this.x, this.y, this.breite, this.hoehe);
+			}
 		}
-		g.drawRect(this.x, this.y, this.breite, this.hoehe);
 	}
 
 }

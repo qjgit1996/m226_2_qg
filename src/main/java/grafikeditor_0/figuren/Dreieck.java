@@ -18,11 +18,13 @@ public class Dreieck extends Figur {
 
     }
 
-    public Dreieck(int xA, int yA, int xB, int yB, int xC, int yC, boolean ausgefuellt, Color farbe) {
+    public Dreieck(int xA, int yA, int xB, int yB, Color farbe, boolean ausgefuellt) {
         super(xA, yA, farbe);
-        linkeSeite = new Linie(xA, yA, xB, yB);
-        rechteSeite = new Linie(xA, yA, xC, yC);
-        unterSeite = new Linie(xB, yB, xC, yC);
+        int xC = xB + Math.abs(xA - xB) * 2;
+        int yC = yB;
+        linkeSeite = new Linie(xA, yA, xB, yB, this.farbe);
+        rechteSeite = new Linie(xA, yA, xC, yC, this.farbe);
+        unterSeite = new Linie(xB, yB, xC, yC, this.farbe);
         this.ausgefuellt = ausgefuellt;
 
     }
@@ -51,15 +53,34 @@ public class Dreieck extends Figur {
     }
 
     public void zeichnen(Graphics g) {
-        //this.move(400,400);
         if (this.getFarbe() != null) {
             g.setColor(this.getFarbe());
+            if (this.ausgefuellt) {
+                int[] xPoints = {this.linkeSeite.getX(), this.linkeSeite.getBreite(), this.rechteSeite.getBreite()};
+                int[] yPoints = {this.linkeSeite.getY(), this.linkeSeite.getHoehe(), this.rechteSeite.getHoehe()};
+                g.fillPolygon(xPoints, yPoints, 3);
+            }
+            else {
+                this.linkeSeite.zeichnen(g);
+                this.rechteSeite.zeichnen(g);
+                this.unterSeite.zeichnen(g);
+            }
         }
         else {
             g.setColor(Color.BLACK);
+            if (this.ausgefuellt) {
+                int[] xPoints = {this.linkeSeite.getX(), this.linkeSeite.getBreite(), this.rechteSeite.getBreite()};
+                int[] yPoints = {this.linkeSeite.getY(), this.linkeSeite.getHoehe(), this.rechteSeite.getHoehe()};
+                g.fillPolygon(xPoints, yPoints, 3);
+            }
+            else {
+                this.linkeSeite.zeichnen(g);
+                this.rechteSeite.zeichnen(g);
+                this.unterSeite.zeichnen(g);
+            }
         }
-        this.linkeSeite.zeichnen(g);
-        this.rechteSeite.zeichnen(g);
-        this.unterSeite.zeichnen(g);
+
+
+
     }
 }
