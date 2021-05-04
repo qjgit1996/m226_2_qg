@@ -37,10 +37,17 @@ public class Zeichnung {
         }
     }
 
+    public ArrayList<Figur> getFiguren() {
+        return this.figuren;
+    }
+
+    public void arrayLeeren() {
+        this.figuren.clear();
+    }
+
     public void save(Figur figur) {
         int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
         File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien-1) + ".txt");
-        f.delete();
         BufferedWriter writer = null;
         try {
             String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
@@ -113,8 +120,7 @@ public class Zeichnung {
         }
     }
 
-    public void load(String pfad) throws IOException {
-        File file = new File(pfad);
+    public void load(File file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String string;
         int i = 0;

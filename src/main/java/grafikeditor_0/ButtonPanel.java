@@ -2,6 +2,8 @@ package grafikeditor_0;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -30,6 +32,51 @@ class ButtonPanel extends JPanel {
             }
         });
         this.add(colorButton);
+
+        JButton loadButton = new JButton("Laden");
+        loadButton.setBorder(BorderFactory.createLineBorder(Color.darkGray));
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser j = new JFileChooser(new File(System.getProperty("user.home")));
+                int r = j.showOpenDialog(null);
+
+                if (r == JFileChooser.APPROVE_OPTION) {
+                    File file = j.getSelectedFile();
+                    try {
+                        editorControl.load(file);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                    repaint();
+                    editorFrame.focusSetzen();
+                }
+            }
+        });
+        this.add(loadButton);
+        JButton saveButton = new JButton("Speichern");
+        saveButton.setBorder(BorderFactory.createLineBorder(Color.darkGray));
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editorControl.save();
+                editorFrame.focusSetzen();
+            }
+        });
+        this.add(saveButton);
+
+        JButton clearButton = new JButton("Leeren");
+        clearButton.setBorder(BorderFactory.createLineBorder(Color.darkGray));
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editorControl.arrayLeeren();
+                ef.erzeugeUndSetzeEditorPanel();
+                editorFrame.focusSetzen();
+            }
+        });
+        this.add(clearButton);
+
         String[] choices = { "Ausgefüllt", "Nicht Ausgefüllt" };
         final JComboBox<String> cb = new JComboBox<String>(choices);
         cb.addActionListener(new ActionListener() {

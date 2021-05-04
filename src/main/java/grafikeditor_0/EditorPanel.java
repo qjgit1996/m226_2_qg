@@ -15,14 +15,12 @@ class EditorPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                //System.out.println("1"+e.getPoint());
                 editorControl.setErsterPunkt(e.getPoint());
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                //System.out.println("2"+e.getPoint());
                 editorControl.erzeugeFigurMitZweitemPunkt(e.getPoint());
                 repaint();
             }

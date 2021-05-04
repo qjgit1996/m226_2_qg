@@ -3,6 +3,8 @@ package grafikeditor_0;
 import grafikeditor_0.figuren.*;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 final class EditorControl {
@@ -31,6 +33,20 @@ final class EditorControl {
 
     public void setAusgefuellt(boolean ausgefuellt) {
         this.ausgefuellt = ausgefuellt;
+    }
+
+    public void load(File file) throws IOException {
+        this.zeichnung.load(file);
+    }
+
+    public void arrayLeeren() {
+        this.zeichnung.arrayLeeren();
+    }
+
+    public void save() {
+        for (int i = 0; i < this.zeichnung.getFiguren().size(); i++) {
+            this.zeichnung.save(this.zeichnung.getFiguren().get(i));
+        }
     }
 
     public void erzeugeFigurMitZweitemPunkt(Point zweiterPunkt) {
