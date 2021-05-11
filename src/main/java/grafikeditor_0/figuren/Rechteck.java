@@ -1,6 +1,10 @@
 package grafikeditor_0.figuren;
 
+import grafikeditor_0.EditorControl;
+
 import java.awt.*;
+import java.io.*;
+import java.util.Objects;
 
 public class Rechteck extends Figur {
 	private int breite;
@@ -18,6 +22,10 @@ public class Rechteck extends Figur {
 		this.setBreite(breite);
 		this.setHoehe(hoehe);
 		this.ausgefuellt = ausgefuellt;
+	}
+
+	public Rechteck() {
+
 	}
 
 	public int getBreite() {
@@ -73,6 +81,71 @@ public class Rechteck extends Figur {
 			else {
 				g.drawRect(this.x, this.y, this.breite, this.hoehe);
 			}
+		}
+	}
+
+	@Override
+	public void save() throws IOException {
+		int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
+		File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien - 1) + ".txt");
+		BufferedWriter writer = null;
+		String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
+		File logFile = new File(dateiName);
+		writer = new BufferedWriter(new FileWriter(logFile));
+		Rechteck r = this;
+		writer.write("Figurtyp: Rechteck");
+		writer.newLine();
+		writer.write("Origin: " + r.getX() + " " + r.getY());
+		writer.newLine();
+		writer.write("Height/Width: " + r.getBreite() + " " + r.getHoehe());
+		if (r.getFarbe() != null) {
+			writer.newLine();
+			writer.write("RGB: " + r.getFarbe().getRed() + " " + r.getFarbe().getGreen() + " " + r.getFarbe().getBlue());
+		}
+		writer.newLine();
+		writer.write("Ausgefuellt: " + r.getAusgefuellt());
+		writer.close();
+	}
+	@Override
+	public void load(File file, EditorControl editorControl) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String string;
+		int i = 0;
+		int x = 0;
+		int y = 0;
+		int breite = 0;
+		int hoehe = 0;
+		boolean aufgefuellt = false;
+		Color farbe = Color.BLACK;
+
+		while ((string = br.readLine()) != null) {
+			String[] arrayString = string.split(" ");
+			if (i == 1) {
+				x = Integer.parseInt(arrayString[1]);
+				y = Integer.parseInt(arrayString[2]);
+			}
+			if (i == 2) {
+				breite = Integer.parseInt(arrayString[1]);
+				hoehe = Integer.parseInt(arrayString[2]);
+			}
+			if (i == 3) {
+				if (arrayString.length > 2) {
+					farbe = new Color(Integer.parseInt(arrayString[1]), Integer.parseInt(arrayString[2]), Integer.parseInt(arrayString[3]));
+				}
+				else {
+					aufgefuellt = Boolean.parseBoolean(arrayString[1]);
+				}
+			}
+			if (i == 4) {
+				aufgefuellt = Boolean.parseBoolean(arrayString[1]);
+			}
+			i++;
+		}
+		if (i == 3) {
+			editorControl.getZeichnung().hinzufuegen(new Linie(x, y, breite, hoehe));
+		}
+		if (i == 4) {
+			editorControl.getZeichnung().hinzufuegen(new Rechteck(x, y, breite, hoehe, farbe, aufgefuellt));
 		}
 	}
 

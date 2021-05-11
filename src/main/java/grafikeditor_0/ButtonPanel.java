@@ -48,8 +48,8 @@ class ButtonPanel extends JPanel {
                     } catch (IOException ioException) {
                         ioException.printStackTrace();
                     }
-                    repaint();
                     editorFrame.focusSetzen();
+                    editorFrame.repaint();
                 }
             }
         });
@@ -59,7 +59,11 @@ class ButtonPanel extends JPanel {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                editorControl.save();
+                try {
+                    editorControl.save();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
                 editorFrame.focusSetzen();
             }
         });

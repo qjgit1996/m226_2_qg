@@ -7,13 +7,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-final class EditorControl {
+public final class EditorControl {
     ArrayList<Figur> figs = new ArrayList<Figur>();
     private Zeichnung zeichnung = new Zeichnung(figs);
     private char figurTyp;
     private Point ersterPunkt;
     private Color farbe;
     private boolean ausgefuellt = true;
+
+    public Zeichnung getZeichnung() {
+        return this.zeichnung;
+    }
 
     public void allesNeuZeichnen(Graphics g) {
         zeichnung.zeichneFiguren(g);
@@ -36,14 +40,14 @@ final class EditorControl {
     }
 
     public void load(File file) throws IOException {
-        this.zeichnung.load(file);
+        this.zeichnung.load(file, this);
     }
 
     public void arrayLeeren() {
         this.zeichnung.arrayLeeren();
     }
 
-    public void save() {
+    public void save() throws IOException {
         for (int i = 0; i < this.zeichnung.getFiguren().size(); i++) {
             this.zeichnung.save(this.zeichnung.getFiguren().get(i));
         }
@@ -62,7 +66,7 @@ final class EditorControl {
             zeichnung.hinzufuegen(new Dreieck(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y, this.farbe, this.ausgefuellt));
         }
         if (figurTyp == 'l') {
-            zeichnung.hinzufuegen(new Linie(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y));
+            zeichnung.hinzufuegen(new Linie(ersterPunkt.x, ersterPunkt.y, zweiterPunkt.x, zweiterPunkt.y, this.farbe));
         }
     }
 }

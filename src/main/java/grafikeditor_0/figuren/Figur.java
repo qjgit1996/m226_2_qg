@@ -1,6 +1,10 @@
 package grafikeditor_0.figuren;
 
+import grafikeditor_0.EditorControl;
+
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public abstract class Figur {
 	protected int x;
@@ -18,7 +22,15 @@ public abstract class Figur {
 		this.farbe = farbe;
 	}
 
+	public Figur() {
+
+	}
+
 	public abstract void zeichnen(Graphics g);
+
+	public abstract void save() throws IOException;
+
+	public abstract void load(File file, EditorControl editorControl) throws IOException;
 	
 	public int getX() {
 		return x;
