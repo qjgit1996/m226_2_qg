@@ -45,6 +45,7 @@ public class Kreis extends Figur{
         this.moveOrigin(deltaX, deltaY);
     }
 
+    @Override
     public void zeichnen(Graphics g) {
         if (this.getFarbe()!=null){
             g.setColor(this.getFarbe());
