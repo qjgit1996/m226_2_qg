@@ -93,13 +93,7 @@ public class Dreieck extends Figur {
     }
 
     @Override
-    public void save() throws IOException {
-        int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
-        File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien-1) + ".txt");
-        BufferedWriter writer = null;
-        String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
-        File logFile = new File(dateiName);
-        writer = new BufferedWriter(new FileWriter(logFile));
+    public void saveFigure(BufferedWriter writer) throws IOException {
         Dreieck d = this;
         writer.write("Figurtyp: Dreieck");
         writer.newLine();

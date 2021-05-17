@@ -4,7 +4,6 @@ import grafikeditor_0.EditorControl;
 
 import java.awt.*;
 import java.io.*;
-import java.util.Objects;
 
 public class Linie extends Figur {
     private int breite;
@@ -59,13 +58,7 @@ public class Linie extends Figur {
     }
 
     @Override
-    public void save() throws IOException {
-        int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
-        File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien-1) + ".txt");
-        BufferedWriter writer = null;
-        String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
-        File logFile = new File(dateiName);
-        writer = new BufferedWriter(new FileWriter(logFile));
+    public void saveFigure (BufferedWriter writer) throws IOException {
         Linie l = this;
         writer.write("Figurtyp: Linie");
         writer.newLine();
@@ -76,7 +69,6 @@ public class Linie extends Figur {
             writer.newLine();
             writer.write("RGB: " + l.getFarbe().getRed() + " " + l.getFarbe().getGreen() + " " + l.getFarbe().getBlue());
         }
-        writer.close();
     }
 
     @Override

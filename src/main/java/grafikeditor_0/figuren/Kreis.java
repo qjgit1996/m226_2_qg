@@ -69,13 +69,7 @@ public class Kreis extends Figur{
     }
 
     @Override
-    public void save() throws IOException {
-        int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
-        File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien-1) + ".txt");
-        BufferedWriter writer = null;
-        String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
-        File logFile = new File(dateiName);
-        writer = new BufferedWriter(new FileWriter(logFile));
+    public void saveFigure(BufferedWriter writer) throws IOException {
         Kreis k = this;
         writer.write("Figurtyp: Kreis");
         writer.newLine();
@@ -88,7 +82,6 @@ public class Kreis extends Figur{
         }
         writer.newLine();
         writer.write("Ausgefuellt: " + k.getAusgefuellt());
-        writer.close();
     }
 
     @Override

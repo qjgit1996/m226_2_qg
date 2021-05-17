@@ -3,8 +3,11 @@ package grafikeditor_0.figuren;
 import grafikeditor_0.EditorControl;
 
 import java.awt.*;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public abstract class Figur {
 	protected int x;
@@ -22,13 +25,24 @@ public abstract class Figur {
 		this.farbe = farbe;
 	}
 
-	public Figur() {
-
-	}
+	public Figur() { }
 
 	public abstract void zeichnen(Graphics g);
 
-	public abstract void save() throws IOException;
+	public final void save() throws IOException {
+		int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
+		File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien-1) + ".txt");
+		BufferedWriter writer = null;
+		String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
+		File logFile = new File(dateiName);
+		writer = new BufferedWriter(new FileWriter(logFile));
+
+		saveFigure(writer);
+
+		writer.close();
+	}
+
+	public abstract void saveFigure (BufferedWriter writer) throws IOException;
 
 	public abstract void load(File file, EditorControl editorControl) throws IOException;
 	

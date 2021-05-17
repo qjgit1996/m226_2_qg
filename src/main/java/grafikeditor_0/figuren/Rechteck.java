@@ -85,13 +85,7 @@ public class Rechteck extends Figur {
 	}
 
 	@Override
-	public void save() throws IOException {
-		int anzahlDateien = Objects.requireNonNull(new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren").list()).length - 1;
-		File f = new File("/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + (anzahlDateien - 1) + ".txt");
-		BufferedWriter writer = null;
-		String dateiName = "/Users/quintengroenveld/Documents/m226_2_qg/figuren/figur" + anzahlDateien + ".txt";
-		File logFile = new File(dateiName);
-		writer = new BufferedWriter(new FileWriter(logFile));
+	public void saveFigure(BufferedWriter writer) throws IOException {
 		Rechteck r = this;
 		writer.write("Figurtyp: Rechteck");
 		writer.newLine();
@@ -104,7 +98,6 @@ public class Rechteck extends Figur {
 		}
 		writer.newLine();
 		writer.write("Ausgefuellt: " + r.getAusgefuellt());
-		writer.close();
 	}
 	@Override
 	public void load(File file, EditorControl editorControl) throws IOException {

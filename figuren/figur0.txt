@@ -1,4 +1,4 @@
 Figurtyp: Kreis
-Origin: 336 81
-Radius: 219
+Origin: 172 63
+Radius: 201
 Ausgefuellt: true
